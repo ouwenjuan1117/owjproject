@@ -46,28 +46,26 @@ class TestCalc():
             if isinstance(result, float):
                 result = round(result, 2)
         except:
-            if isinstance(a, str):
+            if isinstance(a, str) or isinstance(b, str):
                 raise TypeError('计算不支持字符串相加')
-            elif isinstance(b, str):
-                raise TypeError('计算不支持字符串相加')
+            else:
+                print(a)
+                print(b)
+                print('请输入正确的数据类型')
         else:
             assert expect == result
 
     @pytest.mark.parametrize('a,b,expect', div_datas, ids=div_ids)
     def test_div(self, a, b, expect):
+        if b == 0:
+            print('除数不能为0')
         try:
             # 调用它的减法的方法
             result = self.calc.div(a, b)
             if isinstance(result, float):
                 result = round(result, 2)
         except:
-            if isinstance(a, str):
+            if isinstance(a, str) or isinstance(b, str):
                 raise TypeError('计算不支持字符串相加')
-            elif isinstance(b, str):
-                raise TypeError('计算不支持字符串相加')
-            elif a == 0:
-                raise Exception('除数不能为0')
-            elif b == 0:
-                raise Exception('被除数不能为0')
         else:
             assert expect == result
