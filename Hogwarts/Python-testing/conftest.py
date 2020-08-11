@@ -65,17 +65,17 @@ with open(yamlfilepath, encoding='UTF-8') as f:
 
     # 获取减法成功用例的参数的参数
     sub_datas_success = datas_aa['sub']['sub_datas_success']
-    print(sub_datas_success)
+    # print(sub_datas_success)
     # 获取减法成功测试测试用例的标题
     sub_ids_success = datas_aa['sub']['sub_ids_success']
-    print(sub_ids_success)
+    # print(sub_ids_success)
 
     # 获取减法失败用例的参数的参数
     sub_datas_fail = datas_aa['sub']['sub_datas_fail']
-    print(sub_datas_fail)
+    # print(sub_datas_fail)
     # 获取减法失败测试测试用例的标题
     sub_ids_fail = datas_aa['sub']['sub_ids_fail']
-    print(sub_ids_fail)
+    # print(sub_ids_fail)
 
 
 # 想要在方法前打印开始计算，结束计算，可以用yield
@@ -94,7 +94,7 @@ def get_datas_add(request):
 def get_datas_div(request):
     print('开始计算')
     datas = request.param
-    print(f'减法的测试数据是：{datas}')
+    print(f'除法的测试数据是：{datas}')
     yield datas
     print('结束计算')
 
@@ -104,7 +104,7 @@ def get_datas_div(request):
 def get_datas_mul_success(request):
     print('开始计算')
     datas = request.param
-    print(f'减法的测试数据是：{datas}')
+    print(f'乘法的测试数据是：{datas}')
     yield datas
     print('结束计算')
 
@@ -114,7 +114,7 @@ def get_datas_mul_success(request):
 def get_datas_mul_fail(request):
     print('开始计算')
     datas = request.param
-    print(f'减法的测试数据是：{datas}')
+    print(f'乘法的测试数据是：{datas}')
     yield datas
     print('结束计算')
 
