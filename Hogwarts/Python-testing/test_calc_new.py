@@ -4,24 +4,26 @@ import sys
 import yaml
 
 sys.path.append('../..')
-yamlfilepath = os.path.dirname(__file__) + "/datas/calc.yml"
-with open(yamlfilepath, encoding='UTF-8') as f:
-    # 获取加法的参数
-    datas_aa = yaml.safe_load(f)
 
-    # 获取乘法成功用例的参数的参数
-    mul_datas_success = datas_aa['mul']['mul_datas_success']
-    print(mul_datas_success)
-    # 获取乘法成功测试测试用例的标题
-    mul_ids_success = datas_aa['mul']['mul_ids_success']
-    print(mul_ids_success)
 
-    # 获取乘法失败用例的参数的参数
-    mul_datas_fail = datas_aa['mul']['mul_datas_fail']
-    print(mul_datas_fail)
-    # 获取乘法失败测试测试用例的标题
-    mul_ids_fail = datas_aa['mul']['mul_datas_fail']
-    print(mul_ids_fail)
+# yamlfilepath = os.path.dirname(__file__) + "/datas/calc.yml"
+# with open(yamlfilepath, encoding='UTF-8') as f:
+#     # 获取加法的参数
+#     datas_aa = yaml.safe_load(f)
+#
+#     # 获取乘法成功用例的参数的参数
+#     mul_datas_success = datas_aa['mul']['mul_datas_success']
+#     print(mul_datas_success)
+#     # 获取乘法成功测试测试用例的标题
+#     mul_ids_success = datas_aa['mul']['mul_ids_success']
+#     print(mul_ids_success)
+#
+#     # 获取乘法失败用例的参数的参数
+#     mul_datas_fail = datas_aa['mul']['mul_datas_fail']
+#     print(mul_datas_fail)
+#     # 获取乘法失败测试测试用例的标题
+#     mul_ids_fail = datas_aa['mul']['mul_datas_fail']
+#     print(mul_ids_fail)
 
 
 class TestCalc():
@@ -62,7 +64,6 @@ class TestCalc():
 
     # 乘法成功的测试用例
     def test_mul_success(self, get_calc, get_datas_mul_success):
-        # 调用它的减法的方法
         result = get_calc.mul(get_datas_mul_success[0], get_datas_mul_success[1])
         if isinstance(result, float):
             result = round(result, 2)
@@ -85,7 +86,6 @@ class TestCalc():
 
     # 减法成功的测试用例
     def test_sub_success(self, get_calc, get_datas_sub_success):
-        # 调用它的减法的方法
         result = get_calc.sub(get_datas_sub_success[0], get_datas_sub_success[1])
         if isinstance(result, float):
             result = round(result, 2)
