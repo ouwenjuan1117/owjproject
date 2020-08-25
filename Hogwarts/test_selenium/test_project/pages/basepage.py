@@ -44,6 +44,3 @@ class BasePage:
 
     def wait(self, element):
         return WebDriverWait(self.driver, 10).until(ec.presence_of_element_located(element))
-
-    def go_to_main_page(self):
-        return self.driver.get("https://work.weixin.qq.com/wework_admin/frame#index")
