@@ -24,6 +24,7 @@ class TestAddMember:
                                                            "13345459999").cancel_member().get_member_list()
         assert "杨小杨2" not in namelist
 
+
     @pytest.mark.run(order=3)
     def test_contact_member(self):
         # 1.从首页跳转到通讯页面  2.跳转到添加成员页面  3.添加成员页面
