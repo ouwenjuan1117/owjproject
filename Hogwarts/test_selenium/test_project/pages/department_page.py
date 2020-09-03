@@ -32,5 +32,5 @@ class DepartmentPage(BasePage):
         '''定义一个取消保存的方法'''
         from Hogwarts.test_selenium.test_project.pages.contact_page import ContactPage
         # 点击取消按钮
-        self.find(By.CSS_SELECTOR, "#__dialog__MNDialog__ [d_ck=\"cancel\"]").click()
+        self.find(By.CSS_SELECTOR, '#__dialog__MNDialog__ [d_ck="cancel"]').click()
         return ContactPage(self.driver)

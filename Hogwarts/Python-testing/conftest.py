@@ -1,19 +1,23 @@
 import os
-
 import pytest
 import yaml
 import sys
 
 # 获取命令行的当前路径
-sys.path.append('../..')
+# sys.path.append('../..')
+# sys.path.extend(['C:\\Users\\ouwenjuan\\.ssh\\owjproject\\Hogwarts'])
+
+# mypath = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+# sys.path.append(mypath)
+def get_root_dir():
+    return os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+
+
+sys.path.append(get_root_dir())
+
+
 from Hogwarts.pythoncode.calc import Calclator
 
-
-# def get_root_dir():
-#     return os.path.dirname(os.path.dirname(
-#         os.path.dirname(__file__)))
-#
-# sys.path.append(get_root_dir())
 
 def pytest_collection_modifyitems(items):
     '''
@@ -26,6 +30,26 @@ def pytest_collection_modifyitems(items):
         item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
 
 
+# def pytest_addoption(parser):
+#     mygroup = parser.getgroup("hogwarts")  # group 将下面所有的 option都展示在这个group下。
+#     mygroup.addoption("--env",  # 注册一个命令行选项
+#                       default='test',  # 默认值
+#                       dest='env',  # 存储的变量
+#                       help='set your run env'  # 参数说明
+#                       )
+#
+#     mygroup.addoption("--dev",  # 注册一个命令行选项
+#                       default='st',  # 默认值
+#                       dest='dev',  # 存储的变量
+#                       help='set your param'  # 参数说明
+#                       )
+#
+#
+# @pytest.fixture(scope='session')
+# def cmdoption(request):
+#     return request.config.getoption("--env", default='test')
+
+
 @pytest.fixture(scope='module')
 def connectDB():
     print('连接数据库操作')
@@ -33,13 +57,14 @@ def connectDB():
     print('断开数据库连接')
 
 
-@pytest.fixture(scope='class')
+@pytest.fixture(scope='session')
 def get_calc():
     print('获取计算器的实例')
     calc = Calclator()
     return calc
 
 
+# 通过os.path.dirname能够获取文件（conftest.py）所在的目录
 yamlfilepath = os.path.dirname(__file__) + "/datas/calc.yml"
 with open(yamlfilepath, encoding='UTF-8') as f:
     # 获取加法的参数

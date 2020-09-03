@@ -6,7 +6,8 @@ import yaml
 def func(x):
     return x + 1
 
-@pytest.mark.parametrize('a,b',yaml.safe_load(open('./data.yml')))
+
+@pytest.mark.parametrize('a,b', yaml.safe_load(open('./calc.yml')))
 def test_answer(a,b):
     assert func(a) == b
 

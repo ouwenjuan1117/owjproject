@@ -31,6 +31,5 @@ class TestAddMember:
         self.main.go_to_contact().go_to_add_member().add_member("杨小杨3", "5553",
                                                                 "15345458888").save_member().get_member_list()
 
-
     def teardown(self):
         self.main.driver.quit()

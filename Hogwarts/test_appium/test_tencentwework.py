@@ -43,7 +43,7 @@ class TestTencentWework:
         # 定位到外出打卡界面
         self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/ghc").click()
         # 定位到打卡按钮  contains 包含于
-        self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/alq").click()
+        # self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/alq").click()
         self.driver.find_element(MobileBy.XPATH, '//*[contains(@text,"次外出")]').click()
         # 定位到外出打卡文本信息
         rrsult = self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/mn").text

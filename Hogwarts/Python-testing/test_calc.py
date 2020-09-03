@@ -1,11 +1,14 @@
+import os
 import pytest
 import yaml
 import sys
 
+# 获取命令行的当前路径
 sys.path.append('../..')
 from Hogwarts.pythoncode.calc import Calclator
 
-with open('.\datas\calc.yml', encoding='UTF-8') as f:
+yamlfilepath = os.path.dirname(__file__) + "/datas/calc.yml"
+with open(yamlfilepath, encoding='UTF-8') as f:
     # 获取加法的参数
     datas_aa = yaml.safe_load(f)
     add_datas = datas_aa['add']['add_datas']
@@ -55,7 +58,7 @@ class TestCalc():
         else:
             assert expect == result
 
-    @pytest.mark.parametrize('a,b,expect', div_datas, ids=div_ids)
+
     def test_div(self, a, b, expect):
         if b == 0:
             print('除数不能为0')
@@ -67,5 +70,9 @@ class TestCalc():
         except:
             if isinstance(a, str) or isinstance(b, str):
                 raise TypeError('计算不支持字符串相加')
+            else:
+                print(a)
+                print(b)
+                print('请输入正确的数据类型')
         else:
             assert expect == result
