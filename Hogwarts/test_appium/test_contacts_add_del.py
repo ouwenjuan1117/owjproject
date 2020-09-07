@@ -1,3 +1,4 @@
+
 from time import sleep
 
 import pytest
@@ -14,6 +15,7 @@ def get_datas():
         addcontact = contact_datas['add']
         delcontact = contact_datas['del']
     return [addcontact, delcontact]
+
 
 class TestContacts:
     def setup(self):
