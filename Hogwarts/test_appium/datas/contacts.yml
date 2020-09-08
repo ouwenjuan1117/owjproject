@@ -1,7 +1,6 @@
 add:
-  - ["hogwarts002","女","13325288855"]
-  - ["hogwarts003","女","13325288856"]
-
+  - ["hogwarts002","女","13325288852"]
+  - ["hogwarts003","女","13325288853"]
 del:
   - "hogwarts002"
-  - "hogwarts003"
+  - "hogwarts005"

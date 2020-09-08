@@ -8,9 +8,9 @@ from appium.webdriver.common.mobileby import MobileBy
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-# 创建一个方法，用来读取yml文件
+# # 创建一个方法，用来读取yml文件
 def get_datas():
-    with open("./datas/contacts.yml", encoding='utf-8') as f:
+    with open("./datas1/contacts.yml", encoding='utf-8') as f:
         contact_datas = yaml.safe_load(f)
         addcontact = contact_datas['add']
         delcontact = contact_datas['del']
@@ -45,7 +45,7 @@ class TestContacts:
     #     ["hogwarts003", "女", "13325288856"]
     # ])
 
-    @pytest.mark.parametrize("name", "gender", "phonenum", get_datas()[0])
+    @pytest.mark.parametrize("name,gender,phonenum", get_datas()[0])
     def test_addcontact(self, name, gender, phonenum):
         """
         添加联系人
@@ -89,6 +89,7 @@ class TestContacts:
 
         assert '添加成功' == mytoast
 
+    # @pytest.skip
     @pytest.mark.parametrize("membername", get_datas()[1])
     def test_delete_contact(self, membername):
         """
@@ -103,28 +104,27 @@ class TestContacts:
         # 定位到搜索输入框
         self.driver.find_element(MobileBy.XPATH, "//*[@text='搜索']").send_keys(membername)
         sleep(2)
-        # #判断成员是否存在，存在的话 membername文本应该为2，不存在的话那就只有一个membername(老师写的方式)
-        # eles = self.driver.find_elements(MobileBy.XPATH, f"//*[@text='{membername}']")
-        # beforenum = len(eles)
-        # if beforenum < 2:
-        #     print("没有可删除人员")
-        #     # return 不进行后面的操作
-        #     return
-        # # 否则的话，继续往下走，找到第二个进行点击操作
-        # eles[1].click()
+        # 判断成员是否存在，存在的话 membername文本应该为2，不存在的话那就只有一个membername(老师写的方式)
+        eles = self.driver.find_elements(MobileBy.XPATH, f"//*[@text='{membername}']")
+        beforenum = len(eles)
+        if beforenum < 2:
+            print("没有可删除人员")
+            # return 不进行后面的操作
+            return
+        # 否则的话，继续往下走，找到第二个进行点击操作
+        eles[1].click()
 
-        # # 确定成员是否存在（自己写的方式）
-        try:
-            elename = self.driver.find_element(MobileBy.XPATH,
-                                               "//*[@text='hogwarts002' and @class='android.widget.TextView']").text
-            assert membername == elename
-        except:
-            print("成员不存在")
-        self.driver.find_element(MobileBy.XPATH,
-                                 "//*[@text='hogwarts002' and @class='android.widget.TextView']").click()
-
+        #  # 确定成员是否存在（自己写的方式）
+        # try:
+        #     elename = self.driver.find_element(MobileBy.XPATH,
+        #                                        f"//*[@text='{membername}' and @class='android.widget.TextView']").text
+        #     assert membername == elename
+        #     elename.click()
+        # except:
+        #     print("成员不存在")
+        # sleep(2)
         # 进入个人信息页面
-        self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/guk").click()
+        self.driver.find_element(MobileBy.XPATH, "//*[@resource-id='com.tencent.wework:id/guk']").click()
         # 点击 编辑成员
         self.driver.find_element(MobileBy.XPATH, "//*[@text='编辑成员']").click()
         # 点击删除成员
